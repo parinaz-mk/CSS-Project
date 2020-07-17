@@ -1,0 +1,177 @@
+@keyframes fly {
+        0%{
+            left:150%;
+            top: 10%;
+        }
+        25%{
+            left:80%;
+            top: 50%;
+        }
+        50%{
+            left:50%;
+            top: 3%;
+        }
+        75%{
+            left:30%;
+            top: 40%;
+        }
+        100%{
+            left:-50%;
+            top: 10%;
+        }
+  }
+
+@keyframes time {
+    0% {
+        height: 500px;
+    }
+    100% {
+        height: 0;
+    }
+}
+
+html,body {
+  min-height: 100%;
+}
+
+@keyframes curtain {
+    from{height:100vh; opacity:0;}
+     to {height:100vh; opacity:1;}
+  }
+
+body {
+  background: #ee3e12 url('../images/background.jpg') 0 0 no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  counter-reset: birds; 
+}
+
+h2 {
+    position:absolute;
+    font-family: 'Ewert', cursive;
+    font-size: 80px;
+    color: rgb(13, 102, 13);
+    top:0px;
+    text-align:center;
+    left:0px;
+    right:0px;
+    padding:5%;
+  }
+
+img:hover {
+   cursor: crosshair; 
+  }
+
+input + label {
+    position: absolute;
+    display: block;
+    z-index: 1;
+}
+
+input[type=checkbox]{
+    display: none;
+}
+
+input:checked+label.birdsfly {
+    opacity: 0;
+    transition: all 0.5s;
+    transform: rotate(120deg);
+    transform-origin: 60%;
+    z-index: -5;
+    counter-increment: birds;
+}
+
+.birdsfly {
+    position: absolute;
+    left: -150px;
+    z-index: 5;
+}
+
+.birdsfly:nth-last-of-type(1){
+    animation: fly 5s linear infinite alternate;
+}
+.birdsfly:nth-last-of-type(2){
+    animation: fly 12.5s linear 2s infinite alternate;
+}
+.birdsfly:nth-last-of-type(3){
+    animation: fly 10s linear 3s infinite alternate;
+}
+.birdsfly:nth-last-of-type(4){
+    animation: fly 7.5s linear 4s infinite alternate;
+}
+.birdsfly:nth-last-of-type(5){
+    animation: fly 5s linear 5s infinite alternate;
+}
+.birdsfly:nth-last-of-type(6){
+    animation: fly 8s linear 2s infinite alternate;
+}
+.birdsfly:nth-last-of-type(7){
+    animation: fly 6s linear 4s infinite alternate;
+}
+.birdsfly:nth-last-of-type(8){
+    animation: fly 12.5s linear 3s infinite alternate;
+}
+.birdsfly:nth-last-of-type(9){
+    animation: fly 10s linear 7s infinite alternate;
+}
+.birdsfly:nth-last-of-type(10){
+    animation: fly 8s linear 1s infinite alternate;
+}
+
+.sum {
+    position: absolute;
+    top: 10px;
+    left:10px;
+    color: #ca2800;
+    font-size: 28px;
+    padding: 5px;
+    font-weight: bolder;
+    border: 5px double #ca2800;
+    border-radius: 30%;
+}
+
+.sum::after{
+    content: counter(birds) "/10";
+  }
+
+.timer {
+    width: 20px;
+    height: 300px;
+    background: url(../images/timer.png) left center;
+    position: absolute;
+    right: 5px;
+    bottom: 50px;
+    z-index: 100;
+    border-radius: 20px;
+    animation: time 15s 0s 1 linear normal forwards;
+}
+
+.gameover{
+    display:flex;
+    height: 0px;
+    overflow: hidden;
+    opacity: 0;
+    position:fixed; z-index:20;
+    left:0; right:0; top:0;
+    background-color: rgba(0, 0, 0, 0.85); color:#ca2800;
+    animation: curtain 0.6s ease-in;     
+    animation-delay: 15s; /* waitnig time for gameover curtain */
+    animation-fill-mode: forwards;
+  }
+
+.game-title{
+      font-size: 90px;
+      font-weight: bolder;
+      margin:auto;
+    }
+
+.gameover .sum {
+
+    font-size: 50px;
+
+
+}
+ 
